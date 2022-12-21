@@ -29,11 +29,49 @@
         justify-content: center;
       }
       section span {
-        font-family: "Times New Roman", Times, serif;
         font-family: "Roboto", sans-serif;
+        font-size: xx-large;
       }
-      .julklapp {
+      #countdown {
+        text-align: center;
+      }
+      #julklapp {
+        /* display: none; */
         font-family: ChristmasFont;
+        font-size: xx-large;
+      }
+      #julklapp p {
+        text-align: center;
+      }
+      #julklapp button {
+        font-family: inherit;
+        font-size: 1em;
+      }
+      #present {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+      }
+      #present img {
+        width: 50%;
+      }
+      #button2 {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        display: none;
+      }
+      #button3 {
+        position: absolute;
+        bottom: 25%;
+        left: 50%;
+        display: none;
+      }
+      #button4 {
+        position: absolute;
+        right: 25%;
+        top: 50%;
+        display: none;
       }
     </style>
   </head>
@@ -41,14 +79,32 @@
   <body>
     <section>
       <div class="container">
-        <div>
+        <div id="countdown">
           <span id="days"></span>
           <span id="hours"></span>
           <span id="mins"></span>
           <span id="secs"></span>
         </div>
-        <div class="julklapp">
-          <p>Some text</p>
+        <div id="julklapp">
+          <p>God jul, baby! 🎅</p>
+          <button id="button1" onclick="toggleAndHide('button2', 'button1')">
+            Klicka här för att se din present!
+          </button>
+          <button id="button2" onclick="toggleAndHide('button3', 'button2')">
+            Eller här!
+          </button>
+          <button id="button3" onclick="toggleAndHide('button4', 'button3')">
+            Eller här? 🤔
+          </button>
+          <button id="button4" onclick="toggleAndHide('present', 'button4')">
+            Nä, okej, här då!
+          </button>
+          <div id="present">
+            <p>Du har fått en kupong på en gratis omsulning!</p>
+            <img
+              src="https://www.meme-arsenal.com/memes/03933cec60880354d306c92062e557db.jpg"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -82,8 +138,15 @@
           document.getElementById("hours").innerHTML = "";
           document.getElementById("mins").innerHTML = "";
           document.getElementById("secs").innerHTML = "";
+          document.getElementById("julklapp").style.display = "block";
         }
       }, 1000);
+
+      var toggleAndHide = (toggle, hide) => {
+        const toggleDisplay = toggle === "present" ? "flex" : "block";
+        document.getElementById(toggle).style.display = toggleDisplay;
+        document.getElementById(hide).style.display = "none";
+      };
     </script>
   </body>
 </html>
