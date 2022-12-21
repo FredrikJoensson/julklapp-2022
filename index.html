@@ -1,1 +1,89 @@
-Hello World
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Julklapp 2022 🎅</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+      @font-face {
+        font-family: ChristmasFont;
+        src: url("fonts/MerryChristmasFlake.ttf");
+      }
+      html,
+      body,
+      section {
+        width: 100%;
+        height: 100%;
+      }
+      section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      section span {
+        font-family: "Times New Roman", Times, serif;
+        font-family: "Roboto", sans-serif;
+      }
+      .julklapp {
+        font-family: ChristmasFont;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <div class="container">
+        <div>
+          <span id="days"></span>
+          <span id="hours"></span>
+          <span id="mins"></span>
+          <span id="secs"></span>
+        </div>
+        <div class="julklapp">
+          <p>Some text</p>
+        </div>
+      </div>
+    </section>
+    <script>
+      // The data/time we want to countdown to
+      var countDownDate = new Date("Dec 24, 2022 10:00:00").getTime();
+
+      // Run myfunc every second
+      var myfunc = setInterval(function () {
+        var now = new Date().getTime();
+        var timeleft = countDownDate - now;
+
+        // Calculating the days, hours, minutes and seconds left
+        var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+        // Result is output to the specific element
+        document.getElementById("days").innerHTML = days + "d ";
+        document.getElementById("hours").innerHTML = hours + "h ";
+        document.getElementById("mins").innerHTML = minutes + "m ";
+        document.getElementById("secs").innerHTML = seconds + "s ";
+
+        // Display the message when countdown is over
+        if (timeleft < 0) {
+          clearInterval(myfunc);
+          document.getElementById("days").innerHTML = "";
+          document.getElementById("hours").innerHTML = "";
+          document.getElementById("mins").innerHTML = "";
+          document.getElementById("secs").innerHTML = "";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
